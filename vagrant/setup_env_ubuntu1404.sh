@@ -11,7 +11,9 @@ sudo apt-get -y install \
  libncurses-dev \
  cu \
  linux-image-extra-virtual \
- u-boot-tools
+ u-boot-tools \
+ python-dev \
+ python-pip
 
 if uname -a |grep -q 64;
 then
