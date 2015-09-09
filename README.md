@@ -12,7 +12,7 @@ Up to 40 GB of disk space may be used.
 
 ### Installation
 
-1. Install VirtualBox
+1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 2. Install VirtualBox Extension Pack for the host - this is necessary to flash C.H.I.P from inside the virtual machine.
 3. Operating system specific stuff:
    - If you are on Windows, you need to add the VirtualBox installation directory to your PATH.
@@ -20,6 +20,12 @@ Up to 40 GB of disk space may be used.
 4. Install Git
 4. Git clone https://github.com/NextThingCo/CHIP-SDK
 
+You may need to install Vagrant. There's a couple options: 
+
+* download from [the Vagrant website](https://www.vagrantup.com/downloads.html)
+* On OS X, you can use the [homebrew](http://brew.sh) package manager: 
+    1. you'll need [Cask](http://caskroom.io), so if you don't have it: `brew install caskroom/cask/brew-cask`
+    2. then `brew cask install vagrant`
 
 ### Start up the Virtual Machine
 
@@ -28,6 +34,17 @@ In a shell on the host type to following to start up the virtual machine:
     cd CHIP-SDK/vagrant
     vagrant up
 
+A couple notes for the bleary eyed. If you get an error like:
+
+    error: The guest machine entered an invalid state while waiting for it to boot.
+
+This probably means your version of VirtualBox needs updating and/or needs the [Extension Pack](https://www.virtualbox.org/wiki/Downloads). Update as necessary and try `vagrant up` again.
+
+If you get the error:
+
+    error: Couldn't open file /Volumes/Satellite/gitbins/CHIP-SDK/base
+    
+that means you didn't `cd CHIP-SDK/vagrant`.
 
 ### Login to the Virtual mashine
 
