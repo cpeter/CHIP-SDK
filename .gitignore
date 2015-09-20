@@ -1,2 +1,4 @@
-vagrant/.vagrant
-vagrant/id_rsa
+.vagrant
+CHIP-tools
+CHIP-Flasher
+CHIP-buildroot

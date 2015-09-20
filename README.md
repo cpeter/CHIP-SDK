@@ -31,7 +31,7 @@ You may need to install Vagrant. There's a couple options:
 
 In a shell on the host type to following to start up the virtual machine:
 
-    cd CHIP-SDK/vagrant
+    cd CHIP-SDK
     vagrant up
 
 A couple notes for the bleary eyed. If you get an error like:
@@ -44,13 +44,13 @@ If you get the error:
 
     error: Couldn't open file /Volumes/Satellite/gitbins/CHIP-SDK/base
     
-that means you didn't `cd CHIP-SDK/vagrant`.
+that means you didn't `cd CHIP-SDK`.
 
 ### Login to the Virtual mashine
 
 In a shell on the host type to following:
 
-    cd CHIP-SDK/vagrant
+    cd CHIP-SDK
     vagrant ssh
 
 ### Shutdown the Virtual machine
@@ -59,14 +59,24 @@ In a shell on the host type:
     vagrant halt
 
 ### Troubleshooting
-In case you run into trouble because the kernel in the VM was updated and the shared vagrant folder can no longer be mounted, update the guest additions by typing the following in the chip_sdk/vagrant directory on the host:
+In case you run into trouble because the kernel in the VM was updated and the shared vagrant folder can no longer be mounted, update the guest additions by typing the following in the CHIP-SDK directory on the host:
 
     vagrant plugin install vagrant-vbguest
 
 Also look at [this blog post](http://kvz.io/blog/2013/01/16/vagrant-tip-keep-virtualbox-guest-additions-in-sync/)
 
 
-## Build the flash image for CHIP
+## Flash a new C.H.I.P for the first time
+
+Login to the virtual machine:
+
+    vagrant ssh
+    cd $HOME/CHIP-tools
+    ./chip-update-firmware.sh
+
+This downloads the latest firmware (i.e. a Linux kernel, U-Boot and a root filesystem all built with buildroot) and flash it CHIP.
+
+## Build your own flash image for CHIP
 
 ### Start the build process
 In a shell on the host log into the virtual machine by typing:
@@ -75,17 +85,15 @@ In a shell on the host log into the virtual machine by typing:
 
 Logged in to the virtual machine type:
 
-    /vagrant/install.sh
+    ./setup_ubuntu1404.sh
+    cd CHIP-buildroot
+    make chip_defconfig
+    make nconfig #(optional - in case you want to add software)
+    make
 
+### Flash your own buildroot image
 
-## Flash a new C.H.I.P for the first time
-
-Login to the virtual machine:
-
-    vagrant ssh
-    cd $HOME/chip_sdk/tools
-    sudo BUILDROOT_OUTPUT_DIR=../buildroot/output ./chip-fel-flash.sh erase-bb     
-
-Plese note the 'erase-bb' option which causes the bad block table of the NAND to be erased. This is not necessary for C.H.I.Ps that have already been flashed.
-
+Logged in to the virtual machine type:
+    cd ~/CHIP-SDK/CHIP-tools
+    BUILDROOT_OUTPUT_DIR=../CHIP-buildroot/output ./chip-fel-flash.sh
 

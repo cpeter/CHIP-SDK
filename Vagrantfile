@@ -37,7 +37,7 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder ".", "/home/vagrant/CHIP-SDK"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -52,8 +52,10 @@ Vagrant.configure(2) do |config|
      vb.memory = "1024"
      vb.customize ['modifyvm', :id, '--usb', 'on']
      vb.customize ['modifyvm', :id, '--usbehci', 'on']
-     vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'CHIP', '--vendorid', '0x1F3A']
-#     vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'PL2303 Serial Port', '--vendorid', '0x067b', '--product', '0x2303']
+     vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'CHIP',                              '--vendorid', '0x1F3A']
+     vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'CHIP in fastboot mode',             '--vendorid', '0x18d1', '--product', '0x1010']
+     vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'CHIP Linux Gadget USB Serial Port', '--vendorid', '0x0525', '--product', '0xA4A7']
+     vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'PL2303 Serial Port',                '--vendorid', '0x067b', '--product', '0x2303']
   end
   #
   # View the documentation for the provider you are using for more
@@ -69,8 +71,6 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   sudo apt-get update
-  #   sudo apt-get install -y apache2
-  # SHELL
+  #config.vm.provision "shell", path:"setup_ubuntu1404.sh"
+  #end
 end
