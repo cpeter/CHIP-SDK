@@ -94,6 +94,7 @@ Logged in to the virtual machine type:
 ### Flash your own buildroot image
 
 Logged in to the virtual machine type:
+
     cd ~/CHIP-SDK/CHIP-tools
     BUILDROOT_OUTPUT_DIR=../CHIP-buildroot/output ./chip-fel-flash.sh
 
