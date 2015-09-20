@@ -13,7 +13,7 @@ Up to 40 GB of disk space may be used.
 ### Installation
 
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-2. Install VirtualBox Extension Pack for the host - this is necessary to flash C.H.I.P from inside the virtual machine.
+2. Install the [Oracle VM VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads) for the host - this is necessary to flash C.H.I.P from inside the virtual machine.
 3. Operating system specific stuff:
    - If you are on Windows, you need to add the VirtualBox installation directory to your PATH.
    - In case of a Ubuntu host: add your user to the vboxusers group!
