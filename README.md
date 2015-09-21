@@ -8,18 +8,16 @@ A version of Windows, Mac OS X or your favourite Linux distribution running Virt
 For the virtual machine at least of free 1 GB RAM are necessary.
 Up to 40 GB of disk space may be used.
 
-## Getting started with the Vagrant image
+## Installation
 
-### Installation
-
-#### VirtualBox ####
+### VirtualBox
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 2. Install the [Oracle VM VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads) for the host - this is necessary to flash C.H.I.P from inside the virtual machine.
 3. Operating system specific stuff:
    - If you are on Windows, you need to add the VirtualBox installation directory to your PATH.
    - In case of a Ubuntu host: add your user to the vboxusers group!
 
-#### Vagrant ####
+### Vagrant
 You may need to install Vagrant. There's a couple options: 
 
 * Download from [the Vagrant website](https://www.vagrantup.com/downloads.html)
@@ -27,19 +25,21 @@ You may need to install Vagrant. There's a couple options:
     1. you'll need [Cask](http://caskroom.io), so if you don't have it: `brew install caskroom/cask/brew-cask`
     2. then `brew cask install vagrant`
 
-#### Git ####
+### Git
 Installation of Git depends on your operating system:
 * On Windows, look at https://git-scm.com/download/win
 * On a Debian based Linux you can do: `sudo apt-get install git`
 * On Mac OS, the most convenient way is [homebrew](http://brew.sh): `brew install git`
 
-#### Clone the CHIP-SDK Git repository ####
+### Clone the CHIP-SDK Git repository
 Assuming you have `git` in your PATH, open up a terminal and type:
 
     git clone https://github.com/NextThingCo/CHIP-SDK
 
 
-### Start up the Virtual Machine
+## First steps with the Virtual Machine
+
+### Start up
 
 In a shell on the host, change to the the CHIP-SDK directory and sart up the virtual machine:
 
@@ -58,15 +58,24 @@ If you get the error:
     
 that means you didn't `cd CHIP-SDK`.
 
-### Login to the Virtual mashine
+### Login
 
 In a shell on the host type to following:
 
     cd CHIP-SDK
     vagrant ssh
 
-### Shutdown the Virtual machine
-In a shell on the host type:
+If everything went well you should see the following prompt:
+
+    vagrant@vagrant-ubuntu-trusty-32:~$
+
+### Shutdown
+
+If you are still logged into the virtual machine, log out:
+
+    vagrant@vagrant-ubuntu-trusty-32:~$ exit
+    
+Then, in the host-shell type:
 
     vagrant halt
 
@@ -83,8 +92,8 @@ Also look at [this blog post](http://kvz.io/blog/2013/01/16/vagrant-tip-keep-vir
 Login to the virtual machine:
 
     vagrant ssh
-    cd $HOME/CHIP-tools
-    ./chip-update-firmware.sh
+    vagrant@vagrant-ubuntu-trusty-32:~$ cd $HOME/CHIP-tools
+    vagrant@vagrant-ubuntu-trusty-32:~$ ./chip-update-firmware.sh
 
 This downloads the latest firmware (i.e. a Linux kernel, U-Boot and a root filesystem all built with buildroot) and flash it CHIP.
 
