@@ -12,24 +12,36 @@ Up to 40 GB of disk space may be used.
 
 ### Installation
 
+#### VirtualBox ####
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 2. Install the [Oracle VM VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads) for the host - this is necessary to flash C.H.I.P from inside the virtual machine.
 3. Operating system specific stuff:
    - If you are on Windows, you need to add the VirtualBox installation directory to your PATH.
    - In case of a Ubuntu host: add your user to the vboxusers group!
-4. Install Git
-4. Git clone https://github.com/NextThingCo/CHIP-SDK
 
+#### Vagrant ####
 You may need to install Vagrant. There's a couple options: 
 
-* download from [the Vagrant website](https://www.vagrantup.com/downloads.html)
+* Download from [the Vagrant website](https://www.vagrantup.com/downloads.html)
 * On OS X, you can use the [homebrew](http://brew.sh) package manager: 
     1. you'll need [Cask](http://caskroom.io), so if you don't have it: `brew install caskroom/cask/brew-cask`
     2. then `brew cask install vagrant`
 
+#### Git ####
+Installation of Git depends on your operating system:
+* On Windows, look at https://git-scm.com/download/win
+* On a Debian based Linux you can do: `sudo apt-get install git`
+* On Mac OS, the most convenient way is [homebrew](http://brew.sh): `brew install git`
+
+#### Clone the CHIP-SDK Git repository ####
+Assuming you have `git` in your PATH, open up a terminal and type:
+
+    git clone https://github.com/NextThingCo/CHIP-SDK
+
+
 ### Start up the Virtual Machine
 
-In a shell on the host type to following to start up the virtual machine:
+In a shell on the host, change to the the CHIP-SDK directory and sart up the virtual machine:
 
     cd CHIP-SDK
     vagrant up
