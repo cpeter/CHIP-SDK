@@ -69,6 +69,8 @@ Now run the setup script that installs the necessary software inside of the virt
 
     cd CHIP-SDK
     ./setup_ubuntu1404.sh
+    
+Now you have the CHIP-SDK installed successfully and can proceed to [Flash a new C.H.I.P for the first time](#Flash a new C.H.I.P for the first time) or start to [Build your own flash image for CHIP](Build your own flash image for CHIP).
 
 ## Flash a new C.H.I.P for the first time
 
