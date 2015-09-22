@@ -36,10 +36,7 @@ Assuming you have `git` in your PATH, open up a terminal and type:
 
     git clone https://github.com/NextThingCo/CHIP-SDK
 
-
-## First steps with the Virtual Machine
-
-### Start up
+### Start up the virtual machine
 
 In a shell on the host, change to the the CHIP-SDK directory and sart up the virtual machine:
 
@@ -60,20 +57,24 @@ that means you didn't `cd CHIP-SDK`.
 
 ### Login
 
-In a shell on the host type to following:
+In  the same shell on the host type the following:
 
-    cd CHIP-SDK
     vagrant ssh
 
 If everything went well you should see the following prompt:
 
     vagrant@vagrant-ubuntu-trusty-32:~$
 
+Now run the setup script that installs the necessary software inside of the virtual machine:
+
+    cd CHIP-SDK
+    ./setup_ubuntu1404.sh
+
 ### Shutdown
 
 If you are still logged into the virtual machine, log out:
 
-    vagrant@vagrant-ubuntu-trusty-32:~$ exit
+    exit
     
 Then, in the host-shell type:
 
@@ -89,25 +90,21 @@ Also look at [this blog post](http://kvz.io/blog/2013/01/16/vagrant-tip-keep-vir
 
 ## Flash a new C.H.I.P for the first time
 
-Login to the virtual machine:
+Start the virtual machine and login as described above.
+When you see the `vagrant@vagrant-ubuntu-trusty-32:~$` prompt, type:
 
-    vagrant ssh
-    vagrant@vagrant-ubuntu-trusty-32:~$ cd $HOME/CHIP-tools
-    vagrant@vagrant-ubuntu-trusty-32:~$ ./chip-update-firmware.sh
+    cd CHIP-SDK/CHIP-tools
+    ./chip-update-firmware.sh
 
-This downloads the latest firmware (i.e. a Linux kernel, U-Boot and a root filesystem all built with buildroot) and flash it CHIP.
+This downloads the latest firmware (i.e. a Linux kernel, U-Boot and a root filesystem all built with buildroot) and flashes it CHIP.
 
 ## Build your own flash image for CHIP
 
 ### Start the build process
-In a shell on the host log into the virtual machine by typing:
 
-    vagrant ssh
+Logged into the virtual machine (you should see the `vagrant@vagrant-ubuntu-trusty-32:~` prompt) type:
 
-Logged in to the virtual machine type:
-
-    ./setup_ubuntu1404.sh
-    cd CHIP-buildroot
+    cd CHIP-SDK/CHIP-buildroot
     make chip_defconfig
     make nconfig #(optional - in case you want to add software)
     make
