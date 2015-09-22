@@ -50,3 +50,6 @@ popd
 echo -e "\n Installing CHIP-tools"
 git clone http://github.com/NextThingCo/CHIP-tools
 
+echo -e "\n Installing CHIP-buildroot"
+git clone http://github.com/NextThingCo/CHIP-buildroot
+
