@@ -76,10 +76,17 @@ Jumper the CHIP in FEL mode and then connect it to the USB port of your computer
 Start the virtual machine and login as described above.
 When you see the `vagrant@vagrant-ubuntu-trusty-32:~$` prompt, type:
 
-    cd CHIP-SDK/CHIP-tools
+    cd ~/CHIP-SDK/CHIP-tools
     ./chip-update-firmware.sh
 
 This downloads the latest firmware (i.e. a Linux kernel, U-Boot and a root filesystem all built with buildroot) and flashes it CHIP.
+
+If everything went well, you can now login to your CHIP:
+
+    cu -l /dev/ttyACM0 -s 115200
+
+This should show you the following prompt:
+
 
 ## Build your own flash image for CHIP
 
@@ -87,7 +94,7 @@ This downloads the latest firmware (i.e. a Linux kernel, U-Boot and a root files
 
 Logged into the virtual machine (you should see the `vagrant@vagrant-ubuntu-trusty-32:~` prompt) type:
 
-    cd CHIP-SDK/CHIP-buildroot
+    cd ~/CHIP-SDK/CHIP-buildroot
     make chip_defconfig
     make nconfig #(optional - in case you want to add software)
     make
@@ -99,7 +106,7 @@ Logged in to the virtual machine type:
     cd ~/CHIP-SDK/CHIP-tools
     BUILDROOT_OUTPUT_DIR=../CHIP-buildroot/output ./chip-fel-flash.sh
 
-### Shutdown
+## Shutdown
 
 If you are still logged into the virtual machine, log out:
 
@@ -109,7 +116,7 @@ Then, in the host-shell type:
 
     vagrant halt
 
-### Troubleshooting
+## Troubleshooting
 In case you run into trouble because the kernel in the VM was updated and the shared vagrant folder can no longer be mounted, update the guest additions by typing the following in the CHIP-SDK directory on the host:
 
     vagrant plugin install vagrant-vbguest
