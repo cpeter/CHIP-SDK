@@ -67,9 +67,8 @@ If everything went well you should see the following prompt:
 
 Now run the setup script that installs the necessary software inside of the virtual machine:
 
-    cd CHIP-SDK
-    ./setup_ubuntu1404.sh
-    
+    ./CHIP-SDK/setup_ubuntu1404.sh
+ 
 Now you have the CHIP-SDK installed successfully and can proceed to [Flash a new C.H.I.P for the first time](#Flash a new C.H.I.P for the first time) or start to [Build your own flash image for CHIP](Build your own flash image for CHIP).
 
 ## Flash a new C.H.I.P for the first time
@@ -78,7 +77,7 @@ Jumper the CHIP in FEL mode and then connect it to the USB port of your computer
 Start the virtual machine and login as described above.
 When you see the `vagrant@vagrant-ubuntu-trusty-32:~$` prompt, type:
 
-    cd ~/CHIP-SDK/CHIP-tools
+    cd ~/CHIP-tools
     ./chip-update-firmware.sh
 
 This downloads the latest firmware (i.e. a Linux kernel, U-Boot and a root filesystem all built with buildroot) and flashes it CHIP.
@@ -93,7 +92,7 @@ If everything went well, you can now login to your CHIP:
 
 Logged into the virtual machine (you should see the `vagrant@vagrant-ubuntu-trusty-32:~` prompt) type:
 
-    cd ~/CHIP-SDK/CHIP-buildroot
+    cd ~/CHIP-buildroot
     make chip_defconfig
     make
     
@@ -107,7 +106,7 @@ In order to add package or make changes to the Buildroot configuration type:
 
 Logged in to the virtual machine type:
 
-    cd ~/CHIP-SDK/CHIP-tools
+    cd ~/CHIP-tools
     BUILDROOT_OUTPUT_DIR=../CHIP-buildroot/output ./chip-fel-flash.sh
 
 ## Shutdown
