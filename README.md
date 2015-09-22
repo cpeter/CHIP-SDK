@@ -87,9 +87,6 @@ If everything went well, you can now login to your CHIP:
 
     cu -l /dev/ttyACM0 -s 115200
 
-This should show you the following prompt:
-
-
 ## Build your own flash image for CHIP
 
 ### Start the build process
@@ -98,8 +95,12 @@ Logged into the virtual machine (you should see the `vagrant@vagrant-ubuntu-trus
 
     cd ~/CHIP-SDK/CHIP-buildroot
     make chip_defconfig
-    make nconfig #(optional - in case you want to add software)
     make
+This will take a while 
+
+http://buildroot.uclibc.org/docs.html
+
+    make nconfig #(optional - in case you want to add software)
 
 ### Flash your own buildroot image
 
