@@ -70,26 +70,9 @@ Now run the setup script that installs the necessary software inside of the virt
     cd CHIP-SDK
     ./setup_ubuntu1404.sh
 
-### Shutdown
-
-If you are still logged into the virtual machine, log out:
-
-    exit
-    
-Then, in the host-shell type:
-
-    vagrant halt
-
-### Troubleshooting
-In case you run into trouble because the kernel in the VM was updated and the shared vagrant folder can no longer be mounted, update the guest additions by typing the following in the CHIP-SDK directory on the host:
-
-    vagrant plugin install vagrant-vbguest
-
-Also look at [this blog post](http://kvz.io/blog/2013/01/16/vagrant-tip-keep-virtualbox-guest-additions-in-sync/)
-
-
 ## Flash a new C.H.I.P for the first time
 
+Jumper the CHIP in FEL mode and then connect it to the USB port of your computer.
 Start the virtual machine and login as described above.
 When you see the `vagrant@vagrant-ubuntu-trusty-32:~$` prompt, type:
 
@@ -115,4 +98,21 @@ Logged in to the virtual machine type:
 
     cd ~/CHIP-SDK/CHIP-tools
     BUILDROOT_OUTPUT_DIR=../CHIP-buildroot/output ./chip-fel-flash.sh
+
+### Shutdown
+
+If you are still logged into the virtual machine, log out:
+
+    exit
+    
+Then, in the host-shell type:
+
+    vagrant halt
+
+### Troubleshooting
+In case you run into trouble because the kernel in the VM was updated and the shared vagrant folder can no longer be mounted, update the guest additions by typing the following in the CHIP-SDK directory on the host:
+
+    vagrant plugin install vagrant-vbguest
+
+Also look at [this blog post](http://kvz.io/blog/2013/01/16/vagrant-tip-keep-virtualbox-guest-additions-in-sync/)
 
