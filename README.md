@@ -96,11 +96,12 @@ Logged into the virtual machine (you should see the `vagrant@vagrant-ubuntu-trus
     cd ~/CHIP-SDK/CHIP-buildroot
     make chip_defconfig
     make
-This will take a while 
-
-http://buildroot.uclibc.org/docs.html
+    
+This will take a while you might want to read the [Buildroot documentation](http://buildroot.uclibc.org/docs.html).
+In order to add package or make changes to the Buildroot configuration type:
 
     make nconfig #(optional - in case you want to add software)
+    make
 
 ### Flash your own buildroot image
 
