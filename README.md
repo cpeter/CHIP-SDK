@@ -38,7 +38,7 @@ Assuming you have `git` in your PATH, open up a terminal and type:
 
 ### Start up the virtual machine
 
-In a shell on the host, change to the the CHIP-SDK directory and sart up the virtual machine:
+In a shell on the host, change to the the CHIP-SDK directory and start up the virtual machine:
 
     cd CHIP-SDK
     vagrant up
