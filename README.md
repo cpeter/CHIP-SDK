@@ -77,7 +77,7 @@ Now you're ready to Flash a C.H.I.P. from your SDK!
 
 ## Prepare your C.H.I.P. for Flashing
 
-First, prepare CHIP with a jumper wire between the UBOOT pin and GND. In other words, connect Pin 7 and Pin 39 on header U14.
+First, prepare CHIP with a jumper wire between the **UBOOT** pin and **GND**. In other words, connect **Pin 7** and **Pin 39** on header **U14**.
 
 Here's a diagram that labels the headers and pins assuming the USB port is oriented up:
 
