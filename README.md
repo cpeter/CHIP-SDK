@@ -118,13 +118,11 @@ Now let's download the latest firmware (i.e. a Linux kernel, U-Boot and a root f
     cd ~/CHIP-tools
     ./chip-update-firmware.sh
 
-This downloads the latest firmware (i.e. a Linux kernel, U-Boot and a root filesystem all built with buildroot) and flashes it to CHIP.
-
 CHIP will boot automatically after flashing.  Booting may take a minute.  If everything went well, you can now log in to your CHIP:
 
     cu -l /dev/ttyACM0 -s 115200
 
-C.H.I.P.'s login is root. Booting may take a minute.  If everything went well you should be able to run a hardware test...
+C.H.I.P.'s login is **root**.  No password.  Now let's give it a quick hardware test...
 
     hwtest
 
@@ -132,7 +130,7 @@ If everything passed, your C.H.I.P. is ready to go!  Have fun!
 
 ## To Flash C.H.I.P. with your own custom buildroot image...
 
-### Start the build process
+# Start the build process
 
 Logged in to the virtual machine again starting from our *trusty* prompt:
 
@@ -150,7 +148,7 @@ When you're finished with your selections, exit by hitting the F9 key, which wil
 
     /home/vagrant/CHIP-buildroot/.config
    
-NOTE: You can save an alternate build by hitting the F6 key, but only the image save to the above path will flash to C.H.I.P.
+**NOTE:** *You can save an alternate build by hitting the F6 key, but only the image save to the above path will flash to C.H.I.P.*
 
 Now let's build your buildroot...
 
@@ -159,7 +157,7 @@ Now let's build your buildroot...
 This will take a while.  Depending on your computer, maybe an hour.  Maybe grab some coffee...
 
 
-### Flash your own buildroot image
+# Flash your own buildroot image
 
 Logged in to the virtual machine again starting from our *trusty* prompt:
 
@@ -174,7 +172,7 @@ CHIP will boot automatically after flashing.  Booting may take a minute.  If eve
 
     cu -l /dev/ttyACM0 -s 115200
 
-C.H.I.P.'s login is root. If everything went well you should be able to run a hardware test...
+C.H.I.P.'s login is **root**.  No password.  Now let's give it a quick hardware test...
 
     hwtest
 
