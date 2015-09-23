@@ -82,6 +82,7 @@ First, prepare CHIP with a jumper wire between the UBOOT pin and GND. In other w
 Here's a diagram that labels the headers and pins assuming the USB port is oriented up:
 
 And here's a photo with the jumper plugged in...
+![Image of CHIP](/path/to/img.jpg "Image of jumpered CHIP")
 
 It's worth noting that this jumper needs to be present only when you connect CHIP to power. If for some reason the wire becomes disconnected after you have powered CHIP, there is no problem or need to panic.
 
