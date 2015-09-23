@@ -18,7 +18,7 @@ Up to 40 GB of disk space may be used.
    - In case of a Ubuntu host: add your user to the vboxusers group!
 
 ### Vagrant
-You may need to install Vagrant. There's a couple options: 
+You may need to install Vagrant. There are a couple options: 
 
 * Download from [the Vagrant website](https://www.vagrantup.com/downloads.html)
 * On OS X, you can use the [homebrew](http://brew.sh) package manager: 
