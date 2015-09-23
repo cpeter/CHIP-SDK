@@ -130,7 +130,7 @@ If everything passed, your C.H.I.P. is ready to go!  Have fun!
 
 ## To Flash C.H.I.P. with your own custom buildroot image...
 
-# Start the build process
+#### Start the build process
 
 Logged in to the virtual machine again starting from our *trusty* prompt:
 
@@ -157,7 +157,7 @@ Now let's build your buildroot...
 This will take a while.  Depending on your computer, maybe an hour.  Maybe grab some coffee...
 
 
-# Flash your own buildroot image
+#### Flash your own buildroot image
 
 Logged in to the virtual machine again starting from our *trusty* prompt:
 
