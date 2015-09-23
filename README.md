@@ -81,8 +81,11 @@ First, prepare CHIP with a jumper wire between the UBOOT pin and GND. In other w
 
 Here's a diagram that labels the headers and pins assuming the USB port is oriented up:
 
+![Image of CHIP](https://nextthingco.zendesk.com/hc/en-us/article_attachments/203156518/CHIP_ALPHA_V02_Pinouts.png "Image of jumpered CHIP")
+
 And here's a photo with the jumper plugged in...
-![Image of CHIP](/path/to/img.jpg "Image of jumpered CHIP")
+
+![Image of CHIP](https://nextthingco.zendesk.com/hc/en-us/article_attachments/203164668/DSCF2062.JPG "Image of jumpered CHIP")
 
 It's worth noting that this jumper needs to be present only when you connect CHIP to power. If for some reason the wire becomes disconnected after you have powered CHIP, there is no problem or need to panic.
 
@@ -106,7 +109,7 @@ Now we're into C.H.I.P. and ready to flash an image.
 
 If you want to flash C.H.I.P. with a custom image, scroll down the page...If you're cool with our current buildroot image, keep going!
 
-With our virtual machine running, we'll start at our trusty prompt:
+With our virtual machine running, we'll start at our *trusty* prompt:
 
     vagrant@vagrant-ubuntu-trusty-32:~$
 
@@ -131,7 +134,7 @@ If everything passed, your C.H.I.P. is ready to go!  Have fun!
 
 ### Start the build process
 
-Logged in to the virtual machine again starting from our trusty prompt:
+Logged in to the virtual machine again starting from our *trusty* prompt:
 
     vagrant@vagrant-ubuntu-trusty-32:~$
 
@@ -141,7 +144,7 @@ Lets' get in there and make something.
     make chip_defconfig
     make nconfig
 
-From here, you can navigate the menu and select what you want to flash onto your C.H.I.P. and what you don't. Detailing custom buildroot images is outside the scope of this tutorial.  If you're curious, read Free Electrons wonderful buildroot documentation.
+From here, you can navigate the menu and select what you want to flash onto your C.H.I.P. and what you don't. Detailing custom buildroot images is outside the scope of this tutorial.  If you're curious, read Free Electrons wonderful [buildroot documentation](http://buildroot.uclibc.org/docs.html).
 
 When you're finished with your selections, exit by hitting the F9 key, which will automatically save your custom buildroot to...  
 
@@ -155,9 +158,10 @@ Now let's build your buildroot...
 
 This will take a while.  Depending on your computer, maybe an hour.  Maybe grab some coffee...
 
+
 ### Flash your own buildroot image
 
-Logged in to the virtual machine again starting from our trusty prompt:
+Logged in to the virtual machine again starting from our *trusty* prompt:
 
     vagrant@vagrant-ubuntu-trusty-32:~$
 
