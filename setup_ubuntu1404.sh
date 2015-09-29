@@ -5,6 +5,7 @@ sudo apt-get -y update
 sudo apt-get -y install \
  build-essential \
  git \
+ mercurial \
  cmake \
  unzip \
  device-tree-compiler \
