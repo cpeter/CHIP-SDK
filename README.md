@@ -196,3 +196,10 @@ In case you run into trouble because the kernel in the VM was updated and the sh
 
 Also look at [this blog post](http://kvz.io/blog/2013/01/16/vagrant-tip-keep-virtualbox-guest-additions-in-sync/)
 
+In case you get the error
+
+    `ERROR: You don't have permission to access Allwinner USB FEL device`
+    
+You'll need to run `./chip-update-firmware.sh` as `sudo`:
+
+    `sudo ./chip-update-firmware.sh`
