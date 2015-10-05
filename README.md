@@ -77,11 +77,11 @@ Now you're ready to Flash a C.H.I.P. from your SDK!
 
 ## Prepare your C.H.I.P. for Flashing
 
-First, prepare CHIP with a jumper wire between the **UBOOT** pin and **GND**. In other words, connect **Pin 7** and **Pin 39** on header **U14**.
+First, prepare CHIP with a jumper wire between the **FEL** pin and **GND**. In other words, connect **Pin 7** and **Pin 39** on header **U14**.
 
-Here's a diagram that labels the headers and pins assuming the USB port is oriented up:
+Here's a diagram that labels the headers and pins assuming the components are facing you and the USB port is oriented up:
 
-![Image of CHIP](https://nextthingco.zendesk.com/hc/en-us/article_attachments/203156518/CHIP_ALPHA_V02_Pinouts.png "Image of jumpered CHIP")
+![Image of CHIP](https://nextthingco.zendesk.com/hc/en-us/article_attachments/203279037/CHIP_ALPHA_V02_Pinouts2.png "Image of jumpered CHIP")
 
 And here's a photo with the jumper plugged in...
 
