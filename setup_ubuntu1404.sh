@@ -39,7 +39,7 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="1010", GROUP="plug
 sudo udevadm control --reload-rules
 
 echo -e "\n Installing sunxi-tools"
-git clone http://github.com/linux-sunxi/sunxi-tools
+git clone http://github.com/NextThingCo/sunxi-tools
 pushd sunxi-tools
 make
 if [[ -L /usr/local/bin/fel ]]; then
