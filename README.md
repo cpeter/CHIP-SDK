@@ -117,16 +117,38 @@ Now let's download the latest firmware (i.e. a Linux kernel, U-Boot and a root f
 
     cd ~/CHIP-tools
     ./chip-update-firmware.sh
+The flashing script will boot CHIP automatically for the first time, login and power off CHIP to make sure everything went well. This may take a while - please be patient.
 
-CHIP will boot automatically after flashing.  Booting may take a minute.  If everything went well, you can now log in to your CHIP:
+If everything went OK, you can now power up your CHIP again and connect by typing:
 
     cu -l /dev/ttyACM0 -s 115200
 
-C.H.I.P.'s login is **root**.  No password.  Now let's give it a quick hardware test...
+You can login to CHIP as **chip** or if you feel more powerful as **root**. In both cases the password is **chip**. Now let's give it a quick hardware test...
 
     hwtest
 
 If everything passed, your C.H.I.P. is ready to go!  Have fun!
+
+## Flash a C.H.I.P. with Debian
+
+Flashing C.H.I.P with Debian is very similar to flashing with buildroot.
+Actually, you only have to add the parameter `-d` to the `chip-update-firmware.sh` command.
+Just log in to the virtual machine again and start from our *trusty* prompt:
+
+    vagrant@vagrant-ubuntu-trusty-32:~$
+
+Follow these steps to flash your C.H.I.P with debian:
+
+    cd ~/CHIP-tools
+    ./chip-update-firmware.sh -d
+
+The flashing script will boot CHIP automatically for the first time, login and power off CHIP to make sure everything went well. This may take a while - please be patient.
+
+If everything went OK, you can now power up your CHIP again and connect by typing:
+
+    cu -l /dev/ttyACM0 -s 115200
+
+You can login to CHIP as **chip** or if you feel more powerful as **root**. In both cases the password is **chip**.
 
 ## To Flash C.H.I.P. with your own custom buildroot image...
 
@@ -168,15 +190,13 @@ type...
     cd ~/CHIP-tools
     BUILDROOT_OUTPUT_DIR=../CHIP-buildroot/output ./chip-fel-flash.sh
 
-CHIP will boot automatically after flashing.  Booting may take a minute.  If everything went well, you can now log in to your CHIP:
+The flashing script will boot CHIP automatically for the first time, login and power off CHIP to make sure everything went well. This may take a while - please be patient.
+
+If everything went OK, you can now power up your CHIP again and connect by typing:
 
     cu -l /dev/ttyACM0 -s 115200
 
-C.H.I.P.'s login is **root**.  No password.  Now let's give it a quick hardware test...
-
-    hwtest
-
-If everything passed, your C.H.I.P. is ready to go!  Have fun! 
+Unless you changed the users or passwords, you can login to CHIP as **chip** or **root** using the password **chip**.
 
 ## Shutdown
 
@@ -202,4 +222,4 @@ In case you get the error
     
 You'll need to run `./chip-update-firmware.sh` as `sudo`:
 
-    `sudo ./chip-update-firmware.sh`
+    sudo ./chip-update-firmware.sh
