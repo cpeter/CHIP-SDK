@@ -14,9 +14,11 @@ sudo apt-get -y install \
  linux-image-extra-virtual \
  u-boot-tools \
  android-tools-fastboot \
+ android-tools-fsutils \
  python-dev \
  python-pip \
  libusb-1.0-0-dev \
+ g++-arm-linux-gnueabihf \
  pkg-config
 
 if uname -a |grep -q 64;
@@ -35,6 +37,8 @@ sudo usermod -a -G plugdev $(logname)
 echo -e "\n Adding udev rule for Allwinner device"
 echo -e 'SUBSYSTEM=="usb", ATTRS{idVendor}=="1f3a", ATTRS{idProduct}=="efe8", GROUP="plugdev", MODE="0660" SYMLINK+="usb-chip"
 SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="1010", GROUP="plugdev", MODE="0660" SYMLINK+="usb-chip-fastboot"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1f3a", ATTRS{idProduct}=="1010", GROUP="plugdev", MODE="0660" SYMLINK+="usb-chip-fastboot"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="2303", GROUP="plugdev", MODE="0660" SYMLINK+="usb-serial-adapter"
 ' | sudo tee /etc/udev/rules.d/99-allwinner.rules
 sudo udevadm control --reload-rules
 
