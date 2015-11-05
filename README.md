@@ -65,14 +65,6 @@ If everything went well you should see the following prompt:
 
     vagrant@vagrant-ubuntu-trusty-32:~$
 
-Now run the setup script that installs the necessary software inside of the virtual machine:
-
-    ./CHIP-SDK/setup_ubuntu1404.sh
- 
-Congratulations!  Your C.H.I.P. SDK is almost ready!  To finish up and apply the updated permissions, log out of the virtual machine...
-
-    exit
-
 Now you're ready to Flash a C.H.I.P. from your SDK!
 
 ## Prepare your C.H.I.P. for Flashing
