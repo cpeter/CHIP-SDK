@@ -3,6 +3,8 @@ Everything needed to develop software for C.H.I.P.
 
 While it is possible to install the SDK natively, currently the only supported way is to run it from a virtual machine.
 
+*NOTE: the CHIP-SDK is updated regulary if you have an existing installation please have a look at the updating CHIP-SDK section below*
+
 ## System Requirements
 You'll need VirtualBox and Vagrant.
 For the virtual machine at least of free 1 GB RAM are necessary.
@@ -215,3 +217,27 @@ In case you get the error
 You'll need to run `./chip-update-firmware.sh` as `sudo`:
 
     sudo ./chip-update-firmware.sh
+
+## Updating the CHIP-SDK
+
+If you have an already existing installation and want to update it, follow these steps:
+
+On you host operating system, pull the latest changes from our Git repository.
+This can be done by changing into the CHIP-SDK directory and run git pull:
+
+    cd ~/CHIP-SDK
+    git pull
+
+Make sure the virtual machine is shut down and re-provision:
+
+    vagrant halt
+    vagrant provision
+    vagrant up
+
+This should do the trick - ssh into the virtual machine:
+
+    vagrant ssh
+
+Once you see the trusty prompt, you can start developing!
+
+    vagrant@vagrant-ubuntu-trusty-32:~$
