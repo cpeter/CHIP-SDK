@@ -134,7 +134,7 @@ Just log in to the virtual machine again and start from our *trusty* prompt:
 Follow these steps to flash your C.H.I.P with debian:
 
     cd ~/CHIP-tools
-    ./chip-update-firmware.sh -d
+    ./chip-update-firmware.sh -d -f
 
 The flashing script will boot CHIP automatically for the first time, login and power off CHIP to make sure everything went well. This may take a while - please be patient.
 
@@ -143,6 +143,12 @@ If everything went OK, you can now power up your CHIP again and connect by typin
     cu -l /dev/ttyACM0 -s 115200
 
 You can login to CHIP as **chip** or if you feel more powerful as **root**. In both cases the password is **chip**.
+
+## Flash a C.H.I.P. with Debian + GUI
+
+Along with the instructions above, to flash our Debian image with the official C.H.I.P. GUI, you'll have to insert another two options into the command. The `-b` flag informs the flashing script that a build branch will be specified, and `stable-gui` will pull in a long-tested version of the image.
+
+    ./chip-update-firmware.sh -d -b stable-gui -f
 
 ## To Flash C.H.I.P. with your own custom buildroot image...
 
