@@ -115,7 +115,7 @@ The flashing script will boot CHIP automatically for the first time, login and p
 
 If everything went OK, you can now power up your CHIP again and connect by typing:
 
-    cu -l /dev/ttyACM0 -s 115200
+    screen /dev/ttyACM0 115200
 
 You can login to CHIP as **chip** or if you feel more powerful as **root**. In both cases the password is **chip**. Now let's give it a quick hardware test...
 
@@ -140,7 +140,7 @@ The flashing script will boot CHIP automatically for the first time, login and p
 
 If everything went OK, you can now power up your CHIP again and connect by typing:
 
-    cu -l /dev/ttyACM0 -s 115200
+    screen /dev/ttyACM0 115200
 
 You can login to CHIP as **chip** or if you feel more powerful as **root**. In both cases the password is **chip**.
 
@@ -194,7 +194,7 @@ The flashing script will boot CHIP automatically for the first time, login and p
 
 If everything went OK, you can now power up your CHIP again and connect by typing:
 
-    cu -l /dev/ttyACM0 -s 115200
+    screen /dev/ttyACM0 115200
 
 Unless you changed the users or passwords, you can login to CHIP as **chip** or **root** using the password **chip**.
 
