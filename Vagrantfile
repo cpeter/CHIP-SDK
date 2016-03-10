@@ -106,8 +106,8 @@ Vagrant.configure(2) do |config|
          better_usbfilter_add(vb, "18d1", "1010", "CHIP in fastboot mode")
          better_usbfilter_add(vb, "0525", "a4a7", "CHIP Linux Gadget USB Serial Port")
          better_usbfilter_add(vb, "067b", "2303", "PL2303 Serial Port")
+         better_usbfilter_add(vb, "1f3A", "efe8", "CHIP")
      end
-     #vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'CHIP',                              '--vendorid', '0x1F3A']
   end
   #
   # View the documentation for the provider you are using for more
