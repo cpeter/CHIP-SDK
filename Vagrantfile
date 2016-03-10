@@ -1,5 +1,55 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+def which(cmd)
+  exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
+  ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
+    exts.each { |ext|
+      exe = File.join(path, "#{cmd}#{ext}")
+      return exe if File.executable?(exe) && !File.directory?(exe)
+    }
+  end
+  return nil
+end
+
+# usbfilter_exists and better_usbfilter_add originally part of a pull request 
+# https://github.com/mitchellh/vagrant/issues/5774
+def usbfilter_exists(vendor_id, product_id)
+    # Determine if a usbfilter with the provided Vendor/Product ID combination
+    # already exists on this VM.
+    # NOTE: The "machinereadable" output for usbfilters is more
+    #       complicated to work with (due to variable names including
+    #       the numeric filter index) so we don't use it here.
+    #
+    machine_id_filepath = File.join(".vagrant", "machines", "default", "virtualbox", "id")
+
+    if not File.exists? machine_id_filepath
+      # VM hasn't been created yet.
+      return false
+    end
+
+    machine_id = File.read(machine_id_filepath)
+
+    vm_info = `VBoxManage showvminfo #{machine_id}`
+    filter_match = "VendorId:         #{vendor_id}\nProductId:        #{product_id}\n"
+    
+    return vm_info.include? filter_match
+end
+
+def better_usbfilter_add(vb, vendor_id, product_id, filter_name)
+    # This is a workaround for the fact VirtualBox doesn't provide
+    # a way for preventing duplicate USB filters from being added.
+    #
+    # TODO: Implement this in a way that it doesn't get run multiple
+    #       times on each Vagrantfile parsing.
+    if not usbfilter_exists(vendor_id, product_id)
+      vb.customize ["usbfilter", "add", "0",
+                    "--target", :id,
+                    "--name", filter_name,
+                    "--vendorid", vendor_id,
+                    "--productid", product_id
+                    ]
+    end
+end
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -52,10 +102,12 @@ Vagrant.configure(2) do |config|
      vb.memory = "1024"
      vb.customize ['modifyvm', :id, '--usb', 'on']
      vb.customize ['modifyvm', :id, '--usbehci', 'on']
-     vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'CHIP',                              '--vendorid', '0x1F3A']
-     vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'CHIP in fastboot mode',             '--vendorid', '0x18d1', '--product', '0x1010']
-     vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'CHIP Linux Gadget USB Serial Port', '--vendorid', '0x0525', '--product', '0xA4A7']
-     vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'PL2303 Serial Port',                '--vendorid', '0x067b', '--product', '0x2303']
+     unless which('VBoxManage').nil?
+         better_usbfilter_add(vb, "18d1", "1010", "CHIP in fastboot mode")
+         better_usbfilter_add(vb, "0525", "a4a7", "CHIP Linux Gadget USB Serial Port")
+         better_usbfilter_add(vb, "067b", "2303", "PL2303 Serial Port")
+     end
+     #vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'CHIP',                              '--vendorid', '0x1F3A']
   end
   #
   # View the documentation for the provider you are using for more
