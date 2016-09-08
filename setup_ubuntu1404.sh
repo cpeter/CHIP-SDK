@@ -58,3 +58,4 @@ git clone http://github.com/NextThingCo/CHIP-tools
 echo -e "\n Installing CHIP-buildroot"
 git clone http://github.com/NextThingCo/CHIP-buildroot
 
+sudo chown -R vagrant:vagrant *
