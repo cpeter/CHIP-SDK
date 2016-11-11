@@ -73,10 +73,12 @@ sudo make install
 popd
 
 echo -e "\n Installing CHIP-tools"
-git clone http://github.com/NextThingCo/CHIP-tools
+git clone -b by/4.4multi https://github.com/NextThingCo/CHIP-tools.git
 
 echo -e "\n Installing CHIP-buildroot"
 git clone http://github.com/NextThingCo/CHIP-buildroot
 
-sudo chmod -R +xr CHIP-tools
-sudo chmod -R +xr CHIP-buildroot
+sudo chmod -R +wr CHIP-tools/
+sudo chmod -R +wrx CHIP-tools/*.sh
+
+sudo chmod -R +wr CHIP-buildroot/
