@@ -7,6 +7,8 @@ sudo apt-get -y install \
  git \
  mercurial \
  cmake \
+ curl \
+ screen \
  unzip \
  device-tree-compiler \
  libncurses-dev \
