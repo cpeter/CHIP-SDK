@@ -48,6 +48,9 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="2303", GROUP="plug
 sudo udevadm control --reload-rules
 
 echo -e "\n Installing sunxi-tools"
+if [ -d sunxi-tools ]; then
+  rm -rf sunxi-tools
+fi
 git clone http://github.com/linux-sunxi/sunxi-tools
 pushd sunxi-tools
 make
@@ -75,12 +78,11 @@ sudo make install
 popd
 
 echo -e "\n Installing CHIP-tools"
-git clone -b by/4.4multi https://github.com/NextThingCo/CHIP-tools.git
+if [ ! -d CHIP-tools ]; then
+  git clone -b by/4.4multi https://github.com/NextThingCo/CHIP-tools.git
+fi
 
 echo -e "\n Installing CHIP-buildroot"
-git clone http://github.com/NextThingCo/CHIP-buildroot
-
-sudo chmod -R +wr CHIP-tools/
-sudo chmod -R +wrx CHIP-tools/*.sh
-
-sudo chmod -R +wr CHIP-buildroot/
+if [ ! -d CHIP-buildroot ]; then
+  git clone http://github.com/NextThingCo/CHIP-buildroot
+fi
