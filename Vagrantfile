@@ -124,6 +124,7 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
+  config.vm.provision "shell", inline:"cd /home/vagrant"
   config.vm.provision "shell", path:"https://raw.githubusercontent.com/NextThingCo/CHIP-SDK/master/setup_ubuntu1404.sh"
   config.vm.provision "shell", inline:"chown -R vagrant:vagrant /home/vagrant/CHIP-SDK"
   #end
