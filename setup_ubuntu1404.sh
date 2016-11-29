@@ -80,6 +80,10 @@ popd
 echo -e "\n Installing CHIP-tools"
 if [ ! -d CHIP-tools ]; then
   git clone -b by/4.4multi https://github.com/NextThingCo/CHIP-tools.git
+else
+  pushd CHIP-tools
+  git pull
+  popd
 fi
 
 echo -e "\n Installing CHIP-buildroot"
