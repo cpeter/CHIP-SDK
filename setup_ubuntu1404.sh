@@ -22,9 +22,11 @@ sudo apt-get -y install \
  python-pip \
  libusb-1.0-0-dev \
  g++-arm-linux-gnueabihf \
- pkg-config
-
-sudo apt-get -y build-dep mtd-utils
+ pkg-config \
+ libacl1-dev \
+ zlib1g-dev \
+ liblzo2-dev \
+ uuid-dev
 
 if uname -a |grep -q 64;
 then
