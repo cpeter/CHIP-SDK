@@ -80,15 +80,20 @@ sudo make install
 popd
 
 echo -e "\n Installing CHIP-tools"
-if [ ! -d CHIP-tools ]; then
-  git clone -b by/4.4multi https://github.com/NextThingCo/CHIP-tools.git
-else
-  pushd CHIP-tools
-  git pull
-  popd
+if [ -d CHIP-tools ]; then
+  rm -rf CHIP-tools
 fi
+git clone -b by/4.4multi https://github.com/NextThingCo/CHIP-tools.git
 
 echo -e "\n Installing CHIP-buildroot"
 if [ ! -d CHIP-buildroot ]; then
   git clone http://github.com/NextThingCo/CHIP-buildroot
+else
+  pushd CHIP-buildroot
+  git pull
+  popd
+fi
+
+if [ $(echo $PWD | grep vagrant) ];then
+  sudo chown -R vagrant:vagrant *
 fi
