@@ -7,9 +7,12 @@ sudo apt-get -y install \
  git \
  mercurial \
  cmake \
+ curl \
+ screen \
  unzip \
  device-tree-compiler \
  libncurses-dev \
+ ppp \
  cu \
  linux-image-extra-virtual \
  u-boot-tools \
@@ -19,7 +22,11 @@ sudo apt-get -y install \
  python-pip \
  libusb-1.0-0-dev \
  g++-arm-linux-gnueabihf \
- pkg-config
+ pkg-config \
+ libacl1-dev \
+ zlib1g-dev \
+ liblzo2-dev \
+ uuid-dev
 
 if uname -a |grep -q 64;
 then
@@ -43,19 +50,52 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="2303", GROUP="plug
 sudo udevadm control --reload-rules
 
 echo -e "\n Installing sunxi-tools"
-git clone http://github.com/NextThingCo/sunxi-tools
+if [ -d sunxi-tools ]; then
+  rm -rf sunxi-tools
+fi
+git clone http://github.com/linux-sunxi/sunxi-tools
 pushd sunxi-tools
 make
-if [[ -L /usr/local/bin/fel ]]; then
-	sudo rm /usr/local/bin/fel
-fi
-sudo ln -s $PWD/fel /usr/local/bin/fel
+make misc
+SUNXI_TOOLS=(sunxi-bootinfo
+sunxi-fel
+sunxi-fexc
+sunxi-nand-part
+sunxi-pio
+pheonix_info
+nand-image-builder)
+for BIN in ${SUNXI_TOOLS[@]};do
+  if [[ -L /usr/local/bin/${BIN} ]]; then
+    sudo rm /usr/local/bin/${BIN}
+  fi
+  sudo ln -s $PWD/${BIN} /usr/local/bin/${BIN}
+done
+popd
+
+git clone http://github.com/nextthingco/chip-mtd-utils
+pushd chip-mtd-utils
+git checkout by/1.5.2/next-mlc-debian
+make
+sudo make install
 popd
 
 echo -e "\n Installing CHIP-tools"
-git clone http://github.com/NextThingCo/CHIP-tools
+if [ -d CHIP-tools ]; then
+  pushd CHIP-tools
+  git pull
+  popd
+fi
+git clone https://github.com/NextThingCo/CHIP-tools.git
 
 echo -e "\n Installing CHIP-buildroot"
-git clone http://github.com/NextThingCo/CHIP-buildroot
+if [ ! -d CHIP-buildroot ]; then
+  git clone http://github.com/NextThingCo/CHIP-buildroot
+else
+  pushd CHIP-buildroot
+  git pull
+  popd
+fi
 
-sudo chown -R vagrant:vagrant *
+if [ $(echo $PWD | grep vagrant) ];then
+  sudo chown -R vagrant:vagrant *
+fi

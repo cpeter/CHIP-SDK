@@ -2,3 +2,5 @@
 CHIP-tools
 CHIP-Flasher
 CHIP-buildroot
+sunxi-tools
+chip-mtd-utils
