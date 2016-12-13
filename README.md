@@ -97,11 +97,29 @@ If everything went well you should see the following prompt:
    
 Now we're into C.H.I.P. and ready to flash an image.
 
+## Help section
 
+If you're familiar with the old version of the scripts, these options should sound pretty familiar to you, but some of the options have been moved around. So we added a help command to the flashing script:
 
-## Flash a new C.H.I.P. with the NTC buildroot image... 
+    vagrant@vagrant-ubuntu-trusty-32:~$ ./chip-update-firmware.sh -h
+    
+    == Help ==
 
-If you want to flash C.H.I.P. with a custom image, scroll down the page...If you're cool with our current buildroot image, keep going!
+      -s  --  Server             [Debian + Headless]        
+      -g  --  GUI                [Debian + XFCE]            
+      -p  --  PocketCHIP         [CHIP on the go!]          
+      -b  --  Buildroot          [Tiny, but powerful]       
+      -f  --  Force clean        [re-download if applicable]
+      -n  --  No limit           [enable greater power draw]
+      -r  --  Reset              [reset device after flash] 
+      -B  --  Branch             [eg. -B testing]           
+      -N  --  Build#             [eg. -N 150]               
+      -F  --  Format             [eg. -F Toshiba_4G_MLC]    
+      -L  --  Local              [eg. -L ../img/buildroot/] 
+
+## Flash a new C.H.I.P. with the NTC headless Debian image... 
+
+If you want to flash C.H.I.P. with a custom image, scroll down the page...If you're cool with our current headless image, keep going!
 
 With our virtual machine running, we'll start at our *trusty* prompt:
 
@@ -111,7 +129,7 @@ Now let's download the latest firmware (i.e. a Linux kernel, U-Boot and a root f
 
     cd ~/CHIP-tools
     ./chip-update-firmware.sh
-The flashing script will boot CHIP automatically for the first time, login and power off CHIP to make sure everything went well. This may take a while - please be patient.
+This may take a while - please be patient.
 
 If everything went OK, you can now power up your CHIP again and connect by typing:
 
@@ -123,32 +141,18 @@ You can login to CHIP as **chip** or if you feel more powerful as **root**. In b
 
 If everything passed, your C.H.I.P. is ready to go!  Have fun!
 
-## Flash a C.H.I.P. with Debian
-
-Flashing C.H.I.P with Debian is very similar to flashing with buildroot.
-Actually, you only have to add the parameter `-d` to the `chip-update-firmware.sh` command.
-Just log in to the virtual machine again and start from our *trusty* prompt:
-
-    vagrant@vagrant-ubuntu-trusty-32:~$
-
-Follow these steps to flash your C.H.I.P with debian:
-
-    cd ~/CHIP-tools
-    ./chip-update-firmware.sh -d -f
-
-The flashing script will boot CHIP automatically for the first time, login and power off CHIP to make sure everything went well. This may take a while - please be patient.
-
-If everything went OK, you can now power up your CHIP again and connect by typing:
-
-    screen /dev/ttyACM0 115200
-
-You can login to CHIP as **chip** or if you feel more powerful as **root**. In both cases the password is **chip**.
-
 ## Flash a C.H.I.P. with Debian + GUI
 
-Along with the instructions above, to flash our Debian image with the official C.H.I.P. GUI, you'll have to insert another two options into the command. The `-b` flag informs the flashing script that a build branch will be specified, and `stable-gui` will pull in a long-tested version of the image.
+Along with the instructions above, to flash our Debian image with the official C.H.I.P. GUI, you'll have to insert another option into the command. The `-g` flag will pull in Debian with a GUI-based version of the image.
 
-    ./chip-update-firmware.sh -d -b stable-gui -f
+    ./chip-update-firmware.sh -g
+
+
+## Flash a C.H.I.P. with Buildroot
+
+    ./chip-update-firmware.sh -b
+
+You can login to CHIP as **chip** or if you feel more powerful as **root**. In both cases the password is **chip**.
 
 ## To Flash C.H.I.P. with your own custom buildroot image...
 
@@ -188,15 +192,13 @@ Logged in to the virtual machine again starting from our *trusty* prompt:
 type... 
 
     cd ~/CHIP-tools
-    BUILDROOT_OUTPUT_DIR=../CHIP-buildroot/output ./chip-fel-flash.sh
+    sudo ./chip-create-nand-images.sh ../CHIP-buildroot/output/build/uboot-nextthing_2016.01_next ../CHIP-buildroot/output/images/rootfs.tar my-new-images
+    sudo chown -R vagrant:vagrant my-new-images
+    ./chip-flash-nand-images.sh my-new-images
 
-The flashing script will boot CHIP automatically for the first time, login and power off CHIP to make sure everything went well. This may take a while - please be patient.
+Ok, there's a lot of information there, but what's happening?
 
-If everything went OK, you can now power up your CHIP again and connect by typing:
-
-    screen /dev/ttyACM0 115200
-
-Unless you changed the users or passwords, you can login to CHIP as **chip** or **root** using the password **chip**.
+chip-create-nand-images.sh needs to know where to find the uboot binaries as well as the rootfs. From there, it formats these binaries and creates images appropriate for the different types of NAND memory on CHIP and CHIP Pro. That script needs to be run as root to maintain certain permissions in the rootfs. Afterwards though, we can chown the directory that your new images are in, and flash them with chip-flash-nand-images.sh.
 
 ## Shutdown
 
