@@ -63,7 +63,7 @@ sunxi-fexc
 sunxi-nand-part
 sunxi-pio
 pheonix_info
-nand-image-builder)
+sunxi-nand-image-builder)
 for BIN in ${SUNXI_TOOLS[@]};do
   if [[ -L /usr/local/bin/${BIN} ]]; then
     sudo rm /usr/local/bin/${BIN}
